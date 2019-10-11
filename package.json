@@ -2,15 +2,19 @@
   "name": "zaims-constant",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://zenjjim.github.io/Zaims-constant/",
   "dependencies": {
     "@material-ui/core": "^4.5.0",
     "@material-ui/styles": "^4.5.0",
     "classnames": "^2.2.6",
+    "gh-pages": "^2.1.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0"
   },
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
