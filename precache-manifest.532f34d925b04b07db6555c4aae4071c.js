@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bf468e012d8c21114ee09e3447b7fd19",
+    "revision": "37daa4cb667c8fb3a61ca6cd50f5e995",
     "url": "/Zaims-constant/index.html"
   },
   {
-    "revision": "0782c1812ba50aa4a25a",
+    "revision": "ad67317d1daaa4c2a3b8",
     "url": "/Zaims-constant/static/css/main.20d419d9.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Zaims-constant/static/js/2.6644bd93.chunk.js"
   },
   {
-    "revision": "0782c1812ba50aa4a25a",
-    "url": "/Zaims-constant/static/js/main.d1fbc36c.chunk.js"
+    "revision": "ad67317d1daaa4c2a3b8",
+    "url": "/Zaims-constant/static/js/main.b01ffdbb.chunk.js"
   },
   {
     "revision": "80e536d5ffdc6a88f929",
