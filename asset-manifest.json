@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/Zaims-constant/static/css/main.20d419d9.chunk.css",
-    "main.js": "/Zaims-constant/static/js/main.55ec6958.chunk.js",
-    "main.js.map": "/Zaims-constant/static/js/main.55ec6958.chunk.js.map",
+    "main.js": "/Zaims-constant/static/js/main.06c17f40.chunk.js",
+    "main.js.map": "/Zaims-constant/static/js/main.06c17f40.chunk.js.map",
     "runtime-main.js": "/Zaims-constant/static/js/runtime-main.af033f18.js",
     "runtime-main.js.map": "/Zaims-constant/static/js/runtime-main.af033f18.js.map",
-    "static/js/2.6644bd93.chunk.js": "/Zaims-constant/static/js/2.6644bd93.chunk.js",
-    "static/js/2.6644bd93.chunk.js.map": "/Zaims-constant/static/js/2.6644bd93.chunk.js.map",
+    "static/js/2.8563ea10.chunk.js": "/Zaims-constant/static/js/2.8563ea10.chunk.js",
+    "static/js/2.8563ea10.chunk.js.map": "/Zaims-constant/static/js/2.8563ea10.chunk.js.map",
     "index.html": "/Zaims-constant/index.html",
-    "precache-manifest.a03fc350ef5fb3f9e6579c15a074a013.js": "/Zaims-constant/precache-manifest.a03fc350ef5fb3f9e6579c15a074a013.js",
+    "precache-manifest.9e244b30acc7535e8484663b7fcf5803.js": "/Zaims-constant/precache-manifest.9e244b30acc7535e8484663b7fcf5803.js",
     "service-worker.js": "/Zaims-constant/service-worker.js",
     "static/css/main.20d419d9.chunk.css.map": "/Zaims-constant/static/css/main.20d419d9.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.af033f18.js",
-    "static/js/2.6644bd93.chunk.js",
+    "static/js/2.8563ea10.chunk.js",
     "static/css/main.20d419d9.chunk.css",
-    "static/js/main.55ec6958.chunk.js"
+    "static/js/main.06c17f40.chunk.js"
   ]
 }
