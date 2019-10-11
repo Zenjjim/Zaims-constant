@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Zaims-constant/precache-manifest.9e244b30acc7535e8484663b7fcf5803.js"
+  "/Zaims-constant/precache-manifest.fb5e73445b262e68fdae61e2e63a0acc.js"
 );
 
 self.addEventListener('message', (event) => {
