@@ -2,7 +2,7 @@
   "name": "zaims-constant",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://zenjjim.github.io/Zaims-constant/",
+  "homepage": "https://zaims-constant.firebaseapp.com",
   "dependencies": {
     "@material-ui/core": "^4.5.0",
     "@material-ui/styles": "^4.5.0",
