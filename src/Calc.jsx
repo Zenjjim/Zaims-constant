@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { withStyles } from '@material-ui/styles';
+import React, { Component, useState } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
-import { Card, CardContent, Typography, TextField, InputAdornment, Snackbar, SnackbarContent } from '@material-ui/core';
+import { Card, CardContent, Typography, TextField, InputAdornment, Snackbar, SnackbarContent, Button } from '@material-ui/core';
 
 const styles = (theme) => ({
   card: {
@@ -47,7 +47,7 @@ const styles = (theme) => ({
   },
 });
 
-class App extends Component {
+class Calc extends Component {
 
   constructor(props) {
     super(props);
@@ -95,7 +95,7 @@ class App extends Component {
       <Card className={classes.card}>
         <CardContent className={classes.container}>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
-            Zaim's Constant
+            Zaims Konstant
           </Typography>
           <Typography variant="h5" component="h2">
             zaa
@@ -109,17 +109,17 @@ class App extends Component {
             stnt
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            Imaginary unit (₴)
+            Imaginær enhet (₴)
           </Typography>
           <br />
           <TextField
             id="Units"
             className={clsx(classes.margin, classes.textField)}
             variant="outlined"
-            label="Amount"
+            label="Antall"
             type="tel"
             fullWidth
-            placeholder="Enter total units"
+            placeholder="Total enheter"
             value={this.state.value}
             onChange={(e) => this.handleChange(e)}
             onClick={() => {this.setState({value: null})} }
@@ -131,11 +131,11 @@ class App extends Component {
             <div>
               <Typography>
                 <br />
-                {this.state.value} 0.33l Can of Coke
+                {this.state.value} 0.33l boks Dahls
               </Typography>
               <hr />
               <Typography>
-                {this.state.box + " 0.33l Can of Coke"}
+                {this.state.box + " 0.33l boks Dahls"}
                 <br />
                 <TextField
                   id="Cake"
@@ -147,10 +147,9 @@ class App extends Component {
                     shrink: true,
                   }}
                 />
-                {" Toro Cake"}
+                {" Toro Kake"}
               </Typography>
               <hr />
-              <Calculator />
             </div>
           }
         </CardContent>
@@ -163,44 +162,4 @@ class App extends Component {
   }
 }
 
-class Calculator extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-      box: 0,
-      cake: 0,
-      apple: 0,
-      wine: 0,
-      chips: 0,
-    }
-  }
-
-  handleChange(e) {
-      this.setState({ value: e.target.value })
-      this.calculate(e)
-  }
-
-  render(){
-    const { classes } = this.props;
-    return(
-      <div>
-        Calculator coming soon!
-        <Typography>
-          <TextField
-            id="Cake"
-            value={this.state.value}
-            onChange={(e) => this.handleChangeCake(e)}
-            type="tel"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          {" 0.33"}
-        </Typography>
-      </div>
-    );
-  }
-}
-
-export default withStyles(styles)(App);
+export default withStyles(styles)(Calc);

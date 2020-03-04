@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
-import { Grid, TextField, Paper, Button, Typography, MenuItem, Input, Select, FormControl, InputLabel, Chip } from '@material-ui/core'
+import React, { useState, useEffect } from 'react'
+import { Grid, TextField, Paper, Button, Typography, MenuItem, Input, Select, FormControl, InputLabel, Chip, Slide } from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+
+import {getNames, getLaws, post} from './service'
+
 const useStyles = makeStyles(theme => ({
     paper: {
-      width: '40vw',
-      minWidth: '400px',
+      width: '400px',
       position: 'absolute',
-      top: '45%',
+      top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
       padding: '15px'
     },
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
+      minWidth: 250,
+      maxWidth: 250,
     },
     chips: {
       display: 'flex',
@@ -41,19 +43,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -65,13 +54,24 @@ function getStyles(name, personName, theme) {
 
 export default () => {
   const classes = useStyles();
+  const theme = useTheme();
 
   const [name, setName] = useState("")
+  const [personName, setPersonName] = React.useState([]);
   const [law, setLaw] = useState("")
   const [fine, setFine] = useState(0)
+  const [comment, setComment] = useState("")
+  const [names, setNames] = useState([])
+  const [laws, setLaws] = useState([])
+  const [feil, setFeil] = useState(false)
+  const [bra, setBra] = useState(false)
 
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  useEffect(() => {
+    getLaws()
+    .then(data => setLaws(data))
+    getNames()
+    .then(data => setNames(data))
+  }, [])
 
   const handleChange = event => {
     setPersonName(event.target.value);
@@ -88,12 +88,25 @@ export default () => {
     setPersonName(value);
   };
 
+  const postFine = () => {
+    if(name!=="" && Array.isArray(personName) && personName.length && law!=="" && fine!==0){
+      personName.forEach(to => {
+        post(name, to, fine, law, comment)
+        // setName("")
+        // setPersonName([])
+        // setLaw("")
+        // setFine(0)
+        // setComment("")
+        setFeil(false)
+        setBra(true)
+      });
+    } else {
+      setFeil(true)
+    }
+  }
 
   return (
     <Paper className={classes.paper}>
-      <Typography variant="h6">
-        Botregistrering
-      </Typography>
       <Grid
         container
         direction="column"
@@ -102,14 +115,26 @@ export default () => {
         spacing={2}
       >
         <Grid item>
-          <TextField
-              required
-              id="outlined-required"
-              label="Ditt Navn"
+          <Typography variant="h6">
+            Botregistrering
+          </Typography>
+        </Grid>
+        <Grid item>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">Mitt navn</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
               value={name}
               onChange={e=>setName(e.target.value)}
-              variant="outlined"
-          />
+            >
+              {
+                names.map(n => (
+                  <MenuItem value={n}>{n}</MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
         </Grid>
         <Grid item>
           <FormControl className={classes.formControl}>
@@ -123,7 +148,6 @@ export default () => {
               input={<Input id="select-multiple-chip" />}
               renderValue={selected => (
                 <div className={classes.chips}>
-                  
                   {selected.map(value => (
                     <Chip key={value} label={value} className={classes.chip} />
                   ))}
@@ -140,28 +164,58 @@ export default () => {
           </FormControl>
         </Grid>
         <Grid item>
-          <TextField
-              required
-              id="outlined-required"
-              label="Lov"
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">Lov</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
               value={law}
               onChange={e=>setLaw(e.target.value)}
-              variant="outlined"
-          />
+            >
+              {
+                laws.map(n => (
+                  <MenuItem value={n}>{n}</MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
         </Grid>
         <Grid item>
           <TextField
               required
+              className={classes.formControl}
               id="outlined-required"
               label="Forslag til antall bøter"
               type="number"
               value={fine}
-              onChange={e=>{e.target.value < 0 ? setFine(0) : setFine(e.target.value)}}
-              variant="outlined"
+              onChange={e=>{e.target.value < -1 ? setFine(0) : setFine(e.target.value)}}
           />
         </Grid>
         <Grid item>
-          <Button variant="contained">Send</Button>
+          <TextField
+              className={classes.formControl}
+              id="outlined-required"
+              label="Kommentar"
+              value={comment}
+              onChange={e=>{setComment(e.target.value)}}
+          />
+        </Grid>
+        {feil &&
+          <Grid item>
+            <Typography color={"error"}>
+              Noe gikk galt, dobbelsjekk alt over
+            </Typography>
+          </Grid>
+        }
+        {bra &&
+          <Grid item>
+            <Typography color={"primary"}>
+              Boten er meldt! Du er flink
+            </Typography>
+          </Grid>
+        }
+        <Grid item>
+          <Button variant="contained" onClick={()=>(postFine())}>Send</Button>
         </Grid>
       </Grid>
     </Paper>
