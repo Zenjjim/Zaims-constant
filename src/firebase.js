@@ -1,9 +1,9 @@
 import firebase from "firebase";
 
 const firebaseApp = firebase.initializeApp({
-  apiKey: "AIzaSyAiNihemFQio20dhfDFCRUdz8cCK53D9C8",
+  apiKey: process.env.REACT_APP_FIRE_API_KEY,
   authDomain: "zaims-constant.firebaseapp.com",
-  databaseURL: "https://zaims-constant.firebaseio.com",
+  databaseURL: process.env.REACT_APP_FIRE_DB_URL,
   projectId: "zaims-constant",
   storageBucket: "zaims-constant.appspot.com",
   messagingSenderId: "972035840554",

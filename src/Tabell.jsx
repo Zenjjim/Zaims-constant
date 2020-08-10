@@ -76,6 +76,10 @@ class MuiVirtualizedTable extends React.PureComponent {
           inputProps={{ 'aria-label': 'secondary checkbox' }}
         />
         :
+        typeof cellData == "object"
+        ?
+        cellData.toDate().toUTCString()
+        :
         cellData
       }
       {(typeof cellData == "boolean" && !cellData) &&
@@ -181,7 +185,7 @@ export default function ReactVirtualizedTable() {
   }, [updated])
   return (
     <Paper style={{
-      width: '800px',
+      width: '1000px',
       height: '400px',
       padding: '15px',
       margin: '50px auto',
@@ -207,18 +211,23 @@ export default function ReactVirtualizedTable() {
             dataKey: 'alaw',
           },
           {
-            width: 100,
+            width: 60,
             label: 'Antall bøter',
             dataKey: 'afine',
             numeric: true,
           },
           {
-            width: 200,
+            width: 160,
             label: 'Kommentarer',
             dataKey: 'acomment',
           },
           {
             width: 160,
+            label: 'Når',
+            dataKey: 'time',
+          },
+          {
+            width: 120,
             label: 'Judged',
             dataKey: 'accepted',
           },

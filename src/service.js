@@ -1,5 +1,7 @@
 import React from 'react';
 import { db } from './firebase'
+import Axios from 'axios';
+const qs = require('querystring')
 
 
 export const post = (from, to, fine, law, comment) => {
@@ -13,7 +15,7 @@ export const post = (from, to, fine, law, comment) => {
       time: new Date()
     })
     .then(function() {
-        console.log("Document successfully written!");
+        postFineSlack(from, to, fine, law, comment)
     })
     .catch(function(error) {
         console.error("Error writing document: ", error);
@@ -49,7 +51,7 @@ export const getLaws = () => {
     });
 }
 export const getFines = () => {
-    return db.collection("Fines").get()
+    return db.collection("Fines").orderBy("time", "desc").get()
     .then(data => (
         (data.docs.map(doc=> {
             let d = doc.data();
@@ -87,4 +89,21 @@ export const deleteFine = (doc) => {
     .catch(function(error) {
         console.log("Error getting document:", error);
     });
+}
+
+
+const postFineSlack = (from, to, fine, law, comment) => {
+    Axios.post('https://slack.com/api/chat.postMessage',
+    qs.stringify({
+      token: process.env.REACT_APP_BOT_TOKEN,
+      channel: "sprint-bøter",
+      text: from + " anklager " + to + " for å ha brutt lov " + law + ", med forslag til bot på "+fine + " enheter. Kommentar: " + comment
+    }),
+    {
+      headers: {
+        "Content-Type" : "application/x-www-form-urlencoded"
+      }
+    })
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
 }

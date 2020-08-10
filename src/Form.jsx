@@ -92,11 +92,11 @@ export default () => {
     if(name!=="" && Array.isArray(personName) && personName.length && law!=="" && fine!==0){
       personName.forEach(to => {
         post(name, to, fine, law, comment)
-        // setName("")
-        // setPersonName([])
-        // setLaw("")
-        // setFine(0)
-        // setComment("")
+        setName("")
+        setPersonName([])
+        setLaw("")
+        setFine(0)
+        setComment("")
         setFeil(false)
         setBra(true)
       });
@@ -115,7 +115,7 @@ export default () => {
         spacing={2}
       >
         <Grid item>
-          <Typography variant="h6">
+          <Typography variant="h5">
             Botregistrering
           </Typography>
         </Grid>
